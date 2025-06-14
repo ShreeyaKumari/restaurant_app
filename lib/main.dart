@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_app/hidden_drawer.dart';
 import 'package:restaurant_app/utils/colors.dart';
 
-import 'HomePage.dart';
+import 'pages/HomePage.dart';
 import 'SplashScreen.dart';
 
 void main() {
@@ -19,8 +19,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.light,
         fontFamily: 'Roboto',
         appBarTheme: const AppBarTheme(
-          backgroundColor: AppColors.background,
-          foregroundColor: AppColors.primary,
+          backgroundColor: AppColors.primaryLight,
         ),
 
       ),

@@ -1,9 +1,10 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/HomePage.dart';
+import 'package:restaurant_app/pages/HomePage.dart';
+import 'package:restaurant_app/pages/about.dart';
+import 'package:restaurant_app/pages/acceuil.dart';
 import 'utils/colors.dart';
 import 'package:hidden_drawer_menu/hidden_drawer_menu.dart';
-import 'package:http/http.dart' as http;
+
 
 
 class HiddenDrawer extends StatefulWidget {
@@ -15,16 +16,30 @@ class HiddenDrawer extends StatefulWidget {
 
 class _HiddenDrawerState extends State<HiddenDrawer> {
   List<ScreenHiddenDrawer> _pages = [];
-
+  final mytextBaseStyle=TextStyle(color: AppColors.textLight, fontWeight: FontWeight.bold, fontSize: 16);
   @override
   void initState() {
     super.initState();
     _pages=[
       ScreenHiddenDrawer(ItemHiddenMenu(
+        colorLineSelected: AppColors.green,
           name: 'Home Page',
-        baseStyle: TextStyle(color: AppColors.textLight),
+        baseStyle: mytextBaseStyle,
           selectedStyle: TextStyle()
-      ), HomePage())
+      ), HomePage()),
+      ScreenHiddenDrawer(ItemHiddenMenu(
+          colorLineSelected: AppColors.green,
+          name: 'A propos',
+          baseStyle: mytextBaseStyle,
+          selectedStyle: TextStyle()
+      ), AboutPage()),
+      ScreenHiddenDrawer(ItemHiddenMenu(
+          colorLineSelected: AppColors.green,
+          name: 'Acceuil',
+          baseStyle: mytextBaseStyle,
+          selectedStyle: TextStyle()
+      ), Acceuil(name: "La fourchette d\'or",addresse: "Faculté des sciences",desc: "Un restaurant chaleureux offrant une cuisine locale et internationale raffinée.",telephone: "212 6 00 00 00 00",))
+
     ];
   }
   @override
@@ -32,7 +47,9 @@ class _HiddenDrawerState extends State<HiddenDrawer> {
     return HiddenDrawerMenu(
       backgroundColorMenu: AppColors.primary,
       screens:_pages,
-      initPositionSelected: 0,
+      initPositionSelected: 1,
+      slidePercent: 40,
+      contentCornerRadius: 20,
     );
 
   }

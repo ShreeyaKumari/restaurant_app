@@ -1,0 +1,278 @@
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:restaurant_app/utils/colors.dart';
+
+class AboutPage extends StatefulWidget {
+  const AboutPage({super.key});
+
+  @override
+  State<AboutPage> createState() => _AboutPageState();
+}
+
+class _AboutPageState extends State<AboutPage> {
+  final _formKey = GlobalKey<FormState>();
+  final _feedbackController = TextEditingController();
+
+  final List<TeamMember> teamMembers = [
+    TeamMember(
+      name: "Maroua OURAHMA",
+      email: "marouaourahma@gmail.com",
+      avatarPath: "assets/images/maroua.png",
+    ),
+    TeamMember(
+      name: "Wiame ANEJJAR",
+      email: "wiameanejjar@gmail.com",
+      avatarPath: "assets/images/wiame.jpg",
+    ),
+  ];
+
+  final List<Tech> technologies = [
+    Tech(
+      name: "Flutter",
+      description: "Framework UI pour créer des apps natives multiplateformes.",
+      imagePath: "assets/images/flutter.png",
+    ),
+    Tech(
+      name: "Dart",
+      description: "Langage de programmation orienté objets utilisé avec Flutter.",
+      imagePath: "assets/images/dart.png",
+    ),
+  ];
+
+  @override
+  void dispose() {
+    _feedbackController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _launchEmail(String email) async {
+    final Uri emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: email,
+      queryParameters: {'subject': 'Contact via l\'application'},
+    );
+
+    if (await canLaunchUrl(emailLaunchUri)) {
+      await launchUrl(emailLaunchUri);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Impossible d'ouvrir l'application mail")),
+      );
+    }
+  }
+
+  void _submitFeedback() {
+    if (_formKey.currentState!.validate()) {
+      final feedback = _feedbackController.text;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Merci pour votre feedback !")),
+      );
+      _feedbackController.clear();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Equipe
+            Text(
+              "Notre équipe",
+              style: TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+                color: AppColors.primary,
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: teamMembers.map((member) {
+                return Column(
+                  children: [
+                    CircleAvatar(
+                      radius: 50,
+                      backgroundImage: AssetImage(member.avatarPath),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      member.name,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.primary,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    InkWell(
+                      onTap: () => _launchEmail(member.email),
+                      child: Text(
+                        member.email,
+                        style: const TextStyle(
+                          color: Colors.blue,
+                          decoration: TextDecoration.underline,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              }).toList(),
+            ),
+
+            const SizedBox(height: 32),
+
+            // Technologies
+            Text(
+              "Technologies utilisées",
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: AppColors.primary,
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            Column(
+              children: technologies.map((tech) {
+                return Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  elevation: 5,
+                  shadowColor: AppColors.yellow,
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  child: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          tech.imagePath,
+                          width: 60,
+                          height: 60,
+                          fit: BoxFit.contain,
+                        ),
+                        const SizedBox(width: 20),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                tech.name,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.primary,
+                                ),
+                              ),
+                              const SizedBox(height: 6),
+                              Text(
+                                tech.description,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.grey[800],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+
+            const SizedBox(height: 32),
+
+            // Feedback form
+            Text(
+              "Envoyer un feedback",
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: AppColors.primary,
+              ),
+            ),
+            const SizedBox(height: 12),
+
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  TextFormField(
+                    controller: _feedbackController,
+                    maxLines: 4,
+                    decoration: InputDecoration(
+                      hintText: "Votre message",
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.green, width: 2),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return "Veuillez saisir un message";
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton.icon(
+                      onPressed: _submitFeedback,
+                      icon: const Icon(Icons.send),
+                      label: const Text("Envoyer"),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.green,
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class TeamMember {
+  final String name;
+  final String email;
+  final String avatarPath;
+
+  TeamMember({
+    required this.name,
+    required this.email,
+    required this.avatarPath,
+  });
+}
+
+class Tech {
+  final String name;
+  final String description;
+  final String imagePath;
+
+  Tech({
+    required this.name,
+    required this.description,
+    required this.imagePath,
+  });
+}
