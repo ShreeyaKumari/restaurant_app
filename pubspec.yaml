@@ -46,6 +46,9 @@ flutter:
      - assets/images/wiame.jpg
      - assets/images/flutter.png
      - assets/images/dart.png
+     - assets/images/burger.jpg
+     - assets/images/pizza.jpg
+     - assets/images/tiramisu.jpg
 
   # example:
   # fonts:

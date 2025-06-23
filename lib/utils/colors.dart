@@ -7,5 +7,7 @@ class AppColors {
   static const Color primary = Color.fromARGB(255,68, 42, 0);
   static const Color primaryLight = Color.fromARGB(119, 68, 42, 0);
   static const Color textLight = Color(0xFFFFFFFF);
+  static const Color textDark = Color(0xFF333333);
   static const Color danger = Color(0xFFDC3545);
+  static const Color darkgreen =  Color.fromARGB(255, 2, 141, 33) ;
 }
