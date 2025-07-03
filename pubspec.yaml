@@ -43,14 +43,46 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - assets/images/logo.png
-     - assets/images/maroua.png
-     - assets/images/wiame.jpg
-     - assets/images/flutter.png
-     - assets/images/dart.png
-     - assets/images/burger.jpg
-     - assets/images/pizza.jpg
-     - assets/images/tiramisu.jpg
+    - assets/images/logo.png
+    - assets/images/maroua.png
+    - assets/images/wiame.jpg
+    - assets/images/flutter.png
+    - assets/images/dart.png
+    - assets/images/burger.jpg
+    - assets/images/pizza.jpg
+    - assets/images/tiramisu.jpg
+    - assets/images/pizza_quatre_fromages.jpeg
+    - assets/images/pizza_pepperoni.jpeg
+    - assets/images/pizza_vegetarienne.jpeg
+    - assets/images/pizza_fruits_mer.jpeg
+    - assets/images/pizza_orientale.jpg
+    - assets/images/pizza_royale.jpeg
+    - assets/images/burger_cheese.jpeg
+    - assets/images/burger_chicken.jpeg
+    - assets/images/burger_fish.jpeg
+    - assets/images/burger_vegetarien.jpg
+    - assets/images/burger_bbq.jpeg
+    - assets/images/burger_royal.jpeg
+    - assets/images/tajine_poulet_olives.jpeg
+    - assets/images/tajine_agneau_pruneaux.jpg
+    - assets/images/tajine_boeuf_legumes.jpeg
+    - assets/images/tajine_poisson.jpeg
+    - assets/images/tajine_vegetarien.jpg
+    - assets/images/couscous_royal.JPG
+    - assets/images/couscous_agneau.jpeg
+    - assets/images/couscous_poulet.jpeg
+    - assets/images/couscous_vegetarien.jpg
+    - assets/images/eau_sidi_ali.jpg
+    - assets/images/coca_cola.jpg
+    - assets/images/jus_orange.jpg
+    - assets/images/limonade.jpg
+    - assets/images/smoothie_fruits_rouges.JPG
+    - assets/images/lassi_mangue.jpeg
+    - assets/images/baklava.jpeg
+    - assets/images/creme_brulee.jpeg
+    - assets/images/cafe_espresso.JPG
+    - assets/images/the_menthe.jpeg
+    - assets/images/tajine_kefta.jpeg
 
   # example:
   # fonts:
