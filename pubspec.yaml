@@ -19,13 +19,15 @@ dev_dependencies:
     sdk: flutter
   hidden_drawer_menu: ^3.0.1
   http: any
-
+  provider:
+  persistent_bottom_nav_bar: ^6.2.1
+  google_fonts: ^6.2.1
   cupertino_icons: ^1.0.2
   url_launcher:
   flutter_svg:
 
 
-  flutter_lints: ^2.0.0
+  flutter_lints: ^6.0.0
 
 flutter_native_splash:
   color: "#f2f5f6"

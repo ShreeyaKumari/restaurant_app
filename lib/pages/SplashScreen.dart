@@ -16,9 +16,9 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     // Timer to increment progress every 100ms over 3 seconds
-    _timer = Timer.periodic(Duration(milliseconds: 10), (timer) {
+    _timer = Timer.periodic(Duration(milliseconds: 100), (timer) {
       setState(() {
-        _progress += 1 / 30; // ~3 seconds
+        _progress += 1 / 30;
         if (_progress >= 1.0) {
           _progress = 1.0;
           _timer.cancel();

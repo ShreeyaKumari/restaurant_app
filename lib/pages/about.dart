@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/utils/theme_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:restaurant_app/utils/colors.dart';
+import '../utils/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class AboutPage extends StatefulWidget {
   const AboutPage({super.key});
@@ -73,23 +76,25 @@ class _AboutPageState extends State<AboutPage> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
+      appBar: AppBar(
+          title: Text("Notre Equipe",
+              style: Theme.of(context).textTheme.bodyLarge),
+          actions: [
+            Switch.adaptive(
+              value: themeProvider.isDarkMode,
+              onChanged: (value) {
+                themeProvider.toggleTheme(value);
+              },
+            ),
+          ]
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Equipe
-            Text(
-              "Notre équipe",
-              style: TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.bold,
-                color: AppColors.primary,
-              ),
-            ),
-            const SizedBox(height: 16),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: teamMembers.map((member) {
@@ -102,22 +107,14 @@ class _AboutPageState extends State<AboutPage> {
                     const SizedBox(height: 8),
                     Text(
                       member.name,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.primary,
-                      ),
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                     const SizedBox(height: 4),
                     InkWell(
                       onTap: () => _launchEmail(member.email),
                       child: Text(
                         member.email,
-                        style: const TextStyle(
-                          color: Colors.blue,
-                          decoration: TextDecoration.underline,
-                          fontSize: 14,
-                        ),
+                        style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ),
                   ],
@@ -130,11 +127,7 @@ class _AboutPageState extends State<AboutPage> {
             // Technologies
             Text(
               "Technologies utilisées",
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: AppColors.primary,
-              ),
+              style: Theme.of(context).textTheme.bodySmall,
             ),
             const SizedBox(height: 16),
 
@@ -164,19 +157,12 @@ class _AboutPageState extends State<AboutPage> {
                             children: [
                               Text(
                                 tech.name,
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.primary,
-                                ),
+                                style: Theme.of(context).textTheme.bodyLarge,
                               ),
                               const SizedBox(height: 6),
                               Text(
                                 tech.description,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.grey[800],
-                                ),
+                                  style: Theme.of(context).textTheme.bodySmall,
                               ),
                             ],
                           ),
@@ -193,11 +179,7 @@ class _AboutPageState extends State<AboutPage> {
             // Feedback form
             Text(
               "Envoyer un feedback",
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: AppColors.primary,
-              ),
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
             const SizedBox(height: 12),
 
@@ -211,7 +193,7 @@ class _AboutPageState extends State<AboutPage> {
                     decoration: InputDecoration(
                       hintText: "Votre message",
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: themeProvider.isDarkMode ? AppColors.textDark : AppColors.textLight ,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -233,7 +215,7 @@ class _AboutPageState extends State<AboutPage> {
                     child: ElevatedButton.icon(
                       onPressed: _submitFeedback,
                       icon: const Icon(Icons.send),
-                      label: const Text("Envoyer"),
+                      label:  Text("Envoyer",style: Theme.of(context).textTheme.bodySmall,),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.green,
                         padding: const EdgeInsets.symmetric(vertical: 14),

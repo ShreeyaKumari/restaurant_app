@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/utils/colors.dart';
+import 'package:restaurant_app/utils/theme_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../utils/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class Acceuil extends StatelessWidget {
   final String name;
@@ -38,7 +41,20 @@ class Acceuil extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
+      appBar: AppBar(
+          title: Text("Fourchette d\'or",
+              style: Theme.of(context).textTheme.bodyLarge),
+          actions: [
+            Switch.adaptive(
+              value: themeProvider.isDarkMode,
+              onChanged: (value) {
+                themeProvider.toggleTheme(value);
+              },
+            ),
+          ]
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
         child: Column(
@@ -53,14 +69,10 @@ class Acceuil extends StatelessWidget {
             const SizedBox(height: 15),
 
             // Slogan centré sous le logo
-            const Text(
+             Text(
               "Le restaurant qui met les petits plats dans les grands.",
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: Colors.black87,
-              ),
+              style: Theme.of(context).textTheme.bodySmall,
             ),
 
             const SizedBox(height: 20),
@@ -107,34 +119,34 @@ class Acceuil extends StatelessWidget {
                     Text(
                       "Description:",
                       style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                      Theme.of(context).textTheme.bodyLarge
                     ),
                     SizedBox(height: 8),
                     Text(
                       this.desc,
-                      style: TextStyle(fontSize: 16),
+                      style: Theme.of(context).textTheme.bodySmall
                     ),
                     SizedBox(height: 20),
                     Text(
                       "Adresse:",
                       style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                      Theme.of(context).textTheme.bodyLarge
                     ),
                     SizedBox(height: 8),
                     Text(
                       this.addresse,
-                      style: TextStyle(fontSize: 16),
+                      style: Theme.of(context).textTheme.bodySmall
                     ),
                     SizedBox(height: 20),
                     Text(
                       "Téléphone:",
                       style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                      Theme.of(context).textTheme.bodyLarge
                     ),
                     SizedBox(height: 8),
                     Text(
                       this.telephone,
-                      style: TextStyle(fontSize: 16),
+                      style: Theme.of(context).textTheme.bodySmall
                     ),
                   ],
                 ),
