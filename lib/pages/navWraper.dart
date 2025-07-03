@@ -73,7 +73,7 @@ class _NavigationWrapperState extends State<NavigationWrapper> {
 
         useBackdropFilter: true,
         borderRadius: BorderRadius.circular(20),
-        colorBehindNavBar: Colors.transparent,
+        colorBehindNavBar: Theme.of(context).colorScheme.background,
       ),
       confineToSafeArea: true,
     );
