@@ -20,7 +20,7 @@ Voici quelques captures d’écran illustrant l’interface de l’application :
 ![](screenshots/acceuil.png)
 
 **En dark mode**
-![](screenchots/acceuil_dark.png)
+![](screenshots/acceuil_dark.png)
 
 ---
 
@@ -29,7 +29,7 @@ Voici quelques captures d’écran illustrant l’interface de l’application :
 ![](screenshots/home_page.png)
 
 **En dark mode**
-![](screenchots/home_page_dark.png)
+![](screenshots/home_page_dark.png)
 
 ---
 
@@ -38,7 +38,7 @@ Voici quelques captures d’écran illustrant l’interface de l’application :
 ![](screenshots/about.png)
 
 **En dark mode**
-![](screenchots/about_dark.png)
+![](screenshots/about_dark.png)
 
 ---
 
