@@ -2,7 +2,7 @@
 
 <table>
 <tr>
-<td>**Fourchette d’Or** est une application mobile développée avec **Flutter** dans le cadre d’un projet académique. Elle permet de présenter le menu d’un restaurant de manière esthétique, interactive et intuitive.</td>
+<td>Fourchette d’Or est une application mobile développée avec Flutter dans le cadre d’un projet académique. Elle permet de présenter le menu d’un restaurant de manière esthétique, interactive et intuitive.</td>
 <td><img src="assets/images/logo.png" width="300"/></td>
 </tr>
 </table>
@@ -35,10 +35,10 @@ Voici quelques captures d’écran illustrant l’interface de l’application :
 
 ###  À propos
 
-<img src="screenshots/about.png" width="300"/>
+<img src="screenshots/about.png" width="300" alt="image "/>
 
 **En dark mode**
-<img src="screenchots/about_dark.png" width="300"/>
+<img src="screenchots/about_dark.png" width="300" alt=""/>
 ---
 
 ## Objectif
