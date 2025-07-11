@@ -1,16 +1,54 @@
-# restaurant_app
+# 🍽️ Fourchette d’Or
 
-A new Flutter project.
+**Fourchette d’Or** est une application mobile développée avec **Flutter** dans le cadre d’un projet académique. Elle permet de présenter le menu d’un restaurant de manière esthétique, interactive et intuitive.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## Aperçu de l'application
 
-A few resources to get you started if this is your first Flutter project:
+Voici quelques captures d’écran illustrant l’interface de l’application :
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Accueil
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="screenshots/acceuil.png" width="300"/>
+
+---
+
+### Menu – Plats par catégorie
+
+<img src="screenshots/home_page.png" width="300"/>
+
+---
+
+###  À propos
+
+<img src="screenshots/about.png" width="300"/>
+
+---
+
+## Objectif
+
+L’objectif du projet est de développer une application mobile Flutter intuitive permettant aux utilisateurs de :
+- Consulter les plats par catégorie (entrées, plats, desserts, boissons)
+- Donner leur avis (like/dislike)
+- Laisser des commentaires
+- Visualiser les images des plats
+- Naviguer facilement via un **Drawer**
+
+---
+
+## 🛠️ Outils utilisés
+
+- **Flutter** (SDK mobile)
+- **Dart** (langage principal)
+- **Packages Flutter** :
+    - `flutter/material.dart` (UI)
+    - `provider` (gestion d’état – si utilisé)
+    - Autres selon besoin
+
+---
+
+## 👨‍💻 Auteurs
+
+- **Maroua OURAHMA**
+- **Wiame ANEJJAR**

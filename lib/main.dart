@@ -66,7 +66,11 @@ class MyApp extends StatelessWidget {
       themeMode: themeProvider.themeMode,
       title: "La fourchette d\'or",
       debugShowCheckedModeBanner: false,
-      home: NavigationWrapper()
+
+      routes: {
+          '/': (context) => SplashScreen(),
+        '/home': (context) => NavigationWrapper()
+      },
     );
   }
 }
