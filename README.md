@@ -17,28 +17,29 @@ Voici quelques captures d’écran illustrant l’interface de l’application :
 
 ### Accueil
 
-<img src="screenshots/acceuil.png" width="300"/>
+![](screenshots/acceuil.png)
 
 **En dark mode**
-<img src="screenchots/acceuil_dark.png" width="300"/>
+![](screenchots/acceuil_dark.png)
 
 ---
 
 ### Menu
 
-<img src="screenshots/home_page.png" width="300"/>
+![](screenshots/home_page.png)
 
 **En dark mode**
-<img src="screenchots/home_page_dark.png" width="300"/>
+![](screenchots/home_page_dark.png)
 
 ---
 
 ###  À propos
 
-<img src="screenshots/about.png" width="300" alt="image "/>
+![](screenshots/about.png)
 
 **En dark mode**
-<img src="screenchots/about_dark.png" width="300" alt=""/>
+![](screenchots/about_dark.png)
+
 ---
 
 ## Objectif

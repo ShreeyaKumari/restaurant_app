@@ -24,7 +24,7 @@ class Acceuil extends StatelessWidget {
 
   // Ouvrir Google Maps avec une adresse ou des coordonnées
   Future<void> _launchMaps(String query) async {
-    // query peut être une adresse ou "latitude,longitude"
+
     final Uri googleMapsUri = Uri(
       scheme: 'https',
       host: 'www.google.com',
