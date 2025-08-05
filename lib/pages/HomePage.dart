@@ -152,6 +152,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     setState(() {
       dish.dislikes++;
     });
+
   }
 
   void _onAddComment(Dish dish, String commentText) {
@@ -229,7 +230,7 @@ class ReferenceDishCard extends StatelessWidget {
                 children: [
                   Text(
                     dish.name,
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: Theme.of(context).textTheme.bodyMedium,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),

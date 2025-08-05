@@ -1,7 +1,7 @@
 import 'models.dart';
 
 List<Dish> dishes = [
-  // PIZZAS (7 types)
+
   Dish(
     name: 'Pizza Margherita',
     description: 'Tomates fraîches, mozzarella di bufala et basilic',

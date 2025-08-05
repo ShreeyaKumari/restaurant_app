@@ -38,6 +38,11 @@ class MyApp extends StatelessWidget {
                   color: AppColors.brown,
                   fontWeight: FontWeight.w600,
                 ),
+                bodyMedium: GoogleFonts.aboreto(
+                  fontSize: 20,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                ),
                 bodySmall : TextStyle(
                     fontSize : 12
                 )
@@ -58,6 +63,11 @@ class MyApp extends StatelessWidget {
               color: AppColors.yellow,
               fontWeight: FontWeight.w600,
             ),
+              bodyMedium: GoogleFonts.aboreto(
+                fontSize: 20,
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+              ),
             bodySmall : TextStyle(
               fontSize : 12
             )

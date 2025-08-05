@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_app/utils/colors.dart';
 import 'package:restaurant_app/utils/theme_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../utils/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class Acceuil extends StatelessWidget {

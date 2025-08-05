@@ -14,8 +14,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-
-
     _timer = Timer.periodic(Duration(milliseconds: 100), (timer) {
       setState(() {
         _progress += 1 / 30;

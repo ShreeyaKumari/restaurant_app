@@ -72,7 +72,7 @@ class _DishDetailsDialogState extends State<DishDetailsDialog> {
                         Expanded(
                           child: Text(
                             widget.dish.name,
-                            style: Theme.of(context).textTheme.bodySmall,
+                            style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ),
                         Text(
