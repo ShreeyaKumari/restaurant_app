@@ -31,12 +31,12 @@ class _AboutPageState extends State<AboutPage> {
   final List<Tech> technologies = [
     Tech(
       name: "Flutter",
-      description: "Framework UI pour créer des apps natives multiplateformes.",
+      description: "UI framework for building native cross-platform apps.",
       imagePath: "assets/images/flutter.png",
     ),
     Tech(
       name: "Dart",
-      description: "Langage de programmation orienté objets utilisé avec Flutter.",
+      description: "Object-oriented programming language used with Flutter.",
       imagePath: "assets/images/dart.png",
     ),
   ];
@@ -51,14 +51,14 @@ class _AboutPageState extends State<AboutPage> {
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
       path: email,
-      queryParameters: {'subject': 'Contact via l\'application'},
+      queryParameters: {'subject': 'Contact via the application'},
     );
 
     if (await canLaunchUrl(emailLaunchUri)) {
       await launchUrl(emailLaunchUri);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Impossible d'ouvrir l'application mail")),
+        const SnackBar(content: Text("Unable to open mail application")),
       );
     }
   }
@@ -67,7 +67,7 @@ class _AboutPageState extends State<AboutPage> {
     if (_formKey.currentState!.validate()) {
       final feedback = _feedbackController.text;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Merci pour votre feedback !")),
+        const SnackBar(content: Text("Thank you for your feedback!")),
       );
       _feedbackController.clear();
     }
@@ -78,16 +78,15 @@ class _AboutPageState extends State<AboutPage> {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
-          title: Text("Notre Equipe",
-              style: Theme.of(context).textTheme.bodyLarge),
-          actions: [
-            Switch.adaptive(
-              value: themeProvider.isDarkMode,
-              onChanged: (value) {
-                themeProvider.toggleTheme(value);
-              },
-            ),
-          ]
+        title: Text("Our Team", style: Theme.of(context).textTheme.bodyLarge),
+        actions: [
+          Switch.adaptive(
+            value: themeProvider.isDarkMode,
+            onChanged: (value) {
+              themeProvider.toggleTheme(value);
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
@@ -125,7 +124,7 @@ class _AboutPageState extends State<AboutPage> {
 
             // Technologies
             Text(
-              "Technologies utilisées",
+              "Technologies Used",
               style: Theme.of(context).textTheme.bodySmall,
             ),
             const SizedBox(height: 16),
@@ -161,7 +160,7 @@ class _AboutPageState extends State<AboutPage> {
                               const SizedBox(height: 6),
                               Text(
                                 tech.description,
-                                  style: Theme.of(context).textTheme.bodySmall,
+                                style: Theme.of(context).textTheme.bodySmall,
                               ),
                             ],
                           ),
@@ -177,7 +176,7 @@ class _AboutPageState extends State<AboutPage> {
 
             // Feedback form
             Text(
-              "Envoyer un feedback",
+              "Send Feedback",
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             const SizedBox(height: 12),
@@ -190,9 +189,9 @@ class _AboutPageState extends State<AboutPage> {
                     controller: _feedbackController,
                     maxLines: 4,
                     decoration: InputDecoration(
-                      hintText: "Votre message",
+                      hintText: "Your message",
                       filled: true,
-                      fillColor: themeProvider.isDarkMode ? AppColors.textDark : AppColors.textLight ,
+                      fillColor: themeProvider.isDarkMode ? AppColors.textDark : AppColors.textLight,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -203,7 +202,7 @@ class _AboutPageState extends State<AboutPage> {
                     ),
                     validator: (value) {
                       if (value == null || value.trim().isEmpty) {
-                        return "Veuillez saisir un message";
+                        return "Please enter a message";
                       }
                       return null;
                     },
@@ -214,7 +213,7 @@ class _AboutPageState extends State<AboutPage> {
                     child: ElevatedButton.icon(
                       onPressed: _submitFeedback,
                       icon: const Icon(Icons.send),
-                      label:  Text("Envoyer",style: Theme.of(context).textTheme.bodySmall,),
+                      label: Text("Send", style: Theme.of(context).textTheme.bodySmall),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.green,
                         padding: const EdgeInsets.symmetric(vertical: 14),

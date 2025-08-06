@@ -4,8 +4,8 @@ import 'package:restaurant_app/utils/colors.dart';
 import '../utils/dishes.dart';
 import '../utils/theme_provider.dart';
 import 'package:provider/provider.dart';
-
 import 'dish_details.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -13,7 +13,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  String selectedCategory = 'Tous';
+
+  final List<String> categories = [
+  'Pizzas',
+  'Burgers',
+  'Tagines',
+  'Couscous',
+  'Drinks',
+  'Desserts',
+];
+
 
   @override
   void initState() {
@@ -27,15 +36,15 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     super.dispose();
   }
 
-  List<Dish> getFilteredDishes() {
-    if (selectedCategory == 'Tous') {
+  List<Dish> getFilteredDishes(String category) {
+    if (category == 'All') {
       return dishes;
-    } else if (selectedCategory == 'Vos plats préférés') {
+    } else if (category == 'Your favorite dishes') {
       List<Dish> likedDishes = dishes.where((dish) => dish.likes > 0).toList();
       likedDishes.sort((a, b) => b.likes.compareTo(a.likes));
       return likedDishes;
     }
-    return dishes.where((dish) => dish.category == selectedCategory).toList();
+    return dishes.where((dish) => dish.category == category).toList();
   }
 
   void _showDishDetails(BuildContext context, Dish dish) {
@@ -58,8 +67,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Accueil",
-            style: Theme.of(context).textTheme.bodyLarge),
+        title: Text("Home", style: Theme.of(context).textTheme.bodyLarge),
         actions: [
           Switch.adaptive(
             value: themeProvider.isDarkMode,
@@ -67,11 +75,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               themeProvider.toggleTheme(value);
             },
           ),
-    ]
+        ],
       ),
       body: Column(
         children: [
-          // Barre des catégories avec noms centrés (sans tabAlignment)
           Container(
             color: Colors.transparent,
             child: SafeArea(
@@ -82,52 +89,47 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 child: Center(
                   child: TabBar(
                     indicator: BoxDecoration(
-                      color : AppColors.yellow,
-                      borderRadius: BorderRadius.circular(20)
+                      color: AppColors.yellow,
+                      borderRadius: BorderRadius.circular(20),
                     ),
                     controller: _tabController,
                     isScrollable: true,
-                    labelColor: themeProvider.isDarkMode ? AppColors.textLight : AppColors.textDark,
-                    unselectedLabelColor: (themeProvider.isDarkMode ? AppColors.textLight : AppColors.textDark).withOpacity(0.7),
+                    labelColor: themeProvider.isDarkMode
+                        ? AppColors.textLight
+                        : AppColors.textDark,
+                    unselectedLabelColor: (themeProvider.isDarkMode
+                            ? AppColors.textLight
+                            : AppColors.textDark)
+                        .withOpacity(0.7),
                     indicatorColor: AppColors.yellow,
                     labelStyle: Theme.of(context).textTheme.bodySmall,
                     unselectedLabelStyle: Theme.of(context).textTheme.bodySmall,
                     tabs: categories.map((category) => Tab(text: category)).toList(),
-                    onTap: (index) {
-                      setState(() {
-                        selectedCategory = categories[index];
-                      });
-                    },
                   ),
                 ),
               ),
             ),
           ),
-          // Contenu principal
           Expanded(
             child: TabBarView(
               controller: _tabController,
               children: categories.map((category) {
-                List<Dish> filteredDishes = category == 'Tous'
-                    ? dishes
-                    : category == 'Vos plats préférés'
-                    ? getFilteredDishes()
-                    : dishes.where((dish) => dish.category == selectedCategory).toList();
-
+                List<Dish> filteredDishes = getFilteredDishes(category);
                 return Container(
                   padding: EdgeInsets.all(16),
                   child: GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, // 2 cartes par ligne comme dans l'image de référence
+                      crossAxisCount: 2,
                       crossAxisSpacing: 16,
                       mainAxisSpacing: 16,
-                      childAspectRatio: 0.85, // Ratio similaire à l'image de référence
+                      childAspectRatio: 0.85,
                     ),
                     itemCount: filteredDishes.length,
                     itemBuilder: (context, index) {
                       return ReferenceDishCard(
                         dish: filteredDishes[index],
-                        onTap: () => _showDishDetails(context, filteredDishes[index]),
+                        onTap: () =>
+                            _showDishDetails(context, filteredDishes[index]),
                         onLike: () => _onLike(filteredDishes[index]),
                         onDislike: () => _onDislike(filteredDishes[index]),
                       );
@@ -152,13 +154,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     setState(() {
       dish.dislikes++;
     });
-
   }
 
   void _onAddComment(Dish dish, String commentText) {
     setState(() {
       dish.comments.add(Comment(
-        author: 'Utilisateur',
+        author: 'User',
         text: commentText,
         date: DateTime.now(),
       ));
@@ -166,7 +167,6 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   }
 }
 
-// Widget pour les cartes selon l'image de référence
 class ReferenceDishCard extends StatelessWidget {
   final Dish dish;
   final VoidCallback onTap;
@@ -200,7 +200,6 @@ class ReferenceDishCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              flex: 1,
               child: ClipRRect(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
                 child: Container(
@@ -222,7 +221,6 @@ class ReferenceDishCard extends StatelessWidget {
                 ),
               ),
             ),
-            // Infos du plat
             Container(
               padding: EdgeInsets.all(12),
               child: Column(
@@ -262,16 +260,9 @@ class ReferenceDishCard extends StatelessWidget {
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Icon(
-                                    Icons.thumb_up,
-                                    size: 14,
-                                    color: Theme.of(context).primaryColor,
-                                  ),
+                                  Icon(Icons.thumb_up, size: 14, color: Theme.of(context).primaryColor),
                                   SizedBox(width: 4),
-                                  Text(
-                                    '${dish.likes}',
-                                    style: Theme.of(context).textTheme.bodySmall,
-                                  ),
+                                  Text('${dish.likes}', style: Theme.of(context).textTheme.bodySmall),
                                 ],
                               ),
                             ),
@@ -288,16 +279,9 @@ class ReferenceDishCard extends StatelessWidget {
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Icon(
-                                    Icons.thumb_down,
-                                    size: 14,
-                                    color:Theme.of(context).primaryColor,
-                                  ),
+                                  Icon(Icons.thumb_down, size: 14, color: Theme.of(context).primaryColor),
                                   SizedBox(width: 4),
-                                  Text(
-                                    '${dish.dislikes}',
-                                    style: Theme.of(context).textTheme.bodySmall,
-                                  ),
+                                  Text('${dish.dislikes}', style: Theme.of(context).textTheme.bodySmall),
                                 ],
                               ),
                             ),
@@ -315,4 +299,3 @@ class ReferenceDishCard extends StatelessWidget {
     );
   }
 }
-

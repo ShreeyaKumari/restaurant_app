@@ -11,19 +11,18 @@ class Acceuil extends StatelessWidget {
   final String addresse;
   const Acceuil({super.key, required this.name, required this.desc, required this.telephone, required this.addresse});
 
-  // Ouvrir l'application téléphone avec un numéro donné
+  // Open the phone app with a given number
   Future<void> _launchPhone(String phoneNumber) async {
     final Uri phoneUri = Uri(scheme: 'tel', path: phoneNumber);
     if (await canLaunchUrl(phoneUri)) {
       await launchUrl(phoneUri);
     } else {
-      throw 'Impossible d\'appeler ce numéro : $phoneNumber';
+      throw 'Unable to call this number: $phoneNumber';
     }
   }
 
-  // Ouvrir Google Maps avec une adresse ou des coordonnées
+  // Open Google Maps with an address or coordinates
   Future<void> _launchMaps(String query) async {
-
     final Uri googleMapsUri = Uri(
       scheme: 'https',
       host: 'www.google.com',
@@ -34,7 +33,7 @@ class Acceuil extends StatelessWidget {
     if (await canLaunchUrl(googleMapsUri)) {
       await launchUrl(googleMapsUri);
     } else {
-      throw 'Impossible d\'ouvrir Google Maps pour : $query';
+      throw 'Unable to open Google Maps for: $query';
     }
   }
 
@@ -43,7 +42,7 @@ class Acceuil extends StatelessWidget {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(
-          title: Text("Fourchette d\'or",
+          title: Text("Golden Fork",
               style: Theme.of(context).textTheme.bodyLarge),
           actions: [
             Switch.adaptive(
@@ -67,16 +66,16 @@ class Acceuil extends StatelessWidget {
 
             const SizedBox(height: 15),
 
-            // Slogan centré sous le logo
-             Text(
-              "Le restaurant qui met les petits plats dans les grands.",
+            // Centered slogan under logo
+            Text(
+              "The restaurant that puts little dishes in the big ones.",
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodySmall,
             ),
 
             const SizedBox(height: 20),
 
-            // Ligne avec les 2 boutons centrés (Maps & Phone)
+            // Row with 2 centered buttons (Maps & Phone)
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -85,7 +84,7 @@ class Acceuil extends StatelessWidget {
                   color: AppColors.green,
                   icon: const Icon(Icons.place),
                   onPressed: () {
-                    _launchMaps("Faculté des sciences Meknes");
+                    _launchMaps("Faculty of Sciences Meknes");
                   },
                 ),
                 const SizedBox(width: 40),
@@ -103,49 +102,45 @@ class Acceuil extends StatelessWidget {
 
             const SizedBox(height: 30),
 
-            // Card avec description, adresse et téléphone
+            // Card with description, address and phone
             Card(
               shadowColor: AppColors.primary,
               elevation: 8,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
-              child:  Padding(
-                padding:
-                const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children:  [
+                  children: [
                     Text(
                       "Description:",
-                      style:
-                      Theme.of(context).textTheme.bodyLarge
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     SizedBox(height: 8),
                     Text(
                       this.desc,
-                      style: Theme.of(context).textTheme.bodySmall
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                     SizedBox(height: 20),
                     Text(
-                      "Adresse:",
-                      style:
-                      Theme.of(context).textTheme.bodyLarge
+                      "Address:",
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     SizedBox(height: 8),
                     Text(
                       this.addresse,
-                      style: Theme.of(context).textTheme.bodySmall
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                     SizedBox(height: 20),
                     Text(
-                      "Téléphone:",
-                      style:
-                      Theme.of(context).textTheme.bodyLarge
+                      "Phone:",
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     SizedBox(height: 8),
                     Text(
                       this.telephone,
-                      style: Theme.of(context).textTheme.bodySmall
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],
                 ),

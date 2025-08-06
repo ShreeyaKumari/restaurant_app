@@ -37,7 +37,7 @@ class _DishDetailsDialogState extends State<DishDetailsDialog> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Image du plat
+            // Dish image
             ClipRRect(
               borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
               child: Container(
@@ -65,7 +65,7 @@ class _DishDetailsDialogState extends State<DishDetailsDialog> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Nom et prix
+                    // Name and price
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -88,7 +88,7 @@ class _DishDetailsDialogState extends State<DishDetailsDialog> {
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                     SizedBox(height: 12),
-                    // Boutons like/dislike
+                    // Like/dislike buttons
                     Row(
                       children: [
                         ElevatedButton.icon(
@@ -125,11 +125,11 @@ class _DishDetailsDialogState extends State<DishDetailsDialog> {
                       ],
                     ),
                     SizedBox(height: 16),
-                    // Champ pour ajouter un commentaire
+                    // Field to add a comment
                     TextField(
                       controller: _commentController,
                       decoration: InputDecoration(
-                        hintText: 'Ajouter un commentaire...',
+                        hintText: 'Add a comment...',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
@@ -147,9 +147,9 @@ class _DishDetailsDialogState extends State<DishDetailsDialog> {
                       maxLines: 2,
                     ),
                     SizedBox(height: 12),
-                    // Section commentaires
+                    // Comments section
                     Text(
-                      'Commentaires',
+                      'Comments',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -157,7 +157,7 @@ class _DishDetailsDialogState extends State<DishDetailsDialog> {
                       ),
                     ),
                     SizedBox(height: 8),
-                    // Liste des commentaires
+                    // List of comments
                     if (widget.dish.comments.isNotEmpty)
                       Column(
                         children: widget.dish.comments.map((comment) {
@@ -197,7 +197,7 @@ class _DishDetailsDialogState extends State<DishDetailsDialog> {
                       Container(
                         padding: EdgeInsets.all(12),
                         child: Text(
-                          'Aucun commentaire pour le moment',
+                          'No comments yet',
                           style: TextStyle(
                             fontSize: 12,
                             color: Colors.grey[600],
@@ -209,12 +209,12 @@ class _DishDetailsDialogState extends State<DishDetailsDialog> {
                 ),
               ),
             ),
-            // Bouton fermer
+            // Close button
             Padding(
               padding: EdgeInsets.all(12),
               child: ElevatedButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: Text('Fermer'),
+                child: Text('Close'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.green,
                   foregroundColor: Colors.white,

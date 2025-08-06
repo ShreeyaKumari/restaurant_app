@@ -74,7 +74,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       themeMode: themeProvider.themeMode,
-      title: "La fourchette d\'or",
+      title: "Gourmet House",
       debugShowCheckedModeBanner: false,
 
       routes: {

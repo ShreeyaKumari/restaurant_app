@@ -14,12 +14,14 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    // Start a timer that increases progress gradually
     _timer = Timer.periodic(Duration(milliseconds: 100), (timer) {
       setState(() {
-        _progress += 1 / 30;
+        _progress += 1 / 30; // Progress takes 3 seconds (30 * 100ms)
         if (_progress >= 1.0) {
           _progress = 1.0;
           _timer.cancel();
+          // Navigate to home screen when progress is full
           Navigator.pushReplacementNamed(context, '/home');
         }
       });
@@ -28,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void dispose() {
-    _timer.cancel();
+    _timer.cancel(); // Cancel the timer when widget is disposed
     super.dispose();
   }
 
@@ -39,8 +41,10 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(child: Image.asset('assets/images/logo.png', width: 300)),
+          // App Logo
+          Center(child: Image.asset('assets/images/logo2.png', width: 300)),
           SizedBox(height: 30),
+          // Progress Bar
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40.0),
             child: LinearProgressIndicator(
