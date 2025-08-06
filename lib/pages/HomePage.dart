@@ -244,7 +244,7 @@ class ReferenceDishCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '${dish.price.toInt()} DH',
+                        '₹${dish.price.toInt()} ',
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                       Row(

@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:restaurant_app/utils/colors.dart';
 import 'package:restaurant_app/utils/theme_provider.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:provider/provider.dart';
 
 class Acceuil extends StatelessWidget {
   final String name;
   final String desc;
   final String telephone;
   final String addresse;
-  const Acceuil({super.key, required this.name, required this.desc, required this.telephone, required this.addresse});
+
+  const Acceuil({
+    super.key,
+    required this.name,
+    required this.desc,
+    required this.telephone,
+    required this.addresse,
+  });
 
   // Open the phone app with a given number
   Future<void> _launchPhone(String phoneNumber) async {
@@ -40,33 +47,36 @@ class Acceuil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
-          title: Text("Golden Fork",
-              style: Theme.of(context).textTheme.bodyLarge),
-          actions: [
-            Switch.adaptive(
-              value: themeProvider.isDarkMode,
-              onChanged: (value) {
-                themeProvider.toggleTheme(value);
-              },
-            ),
-          ]
+        title: Text(
+          "Golden Fork",
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
+        actions: [
+          Switch.adaptive(
+            value: themeProvider.isDarkMode,
+            onChanged: (value) {
+              themeProvider.toggleTheme(value);
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Logo
+            // Logo Image
             const CircleAvatar(
               radius: 60,
-              backgroundImage: AssetImage("assets/images/logo.png"),
+              backgroundImage: AssetImage("assets/images/logo2.png"),
             ),
 
             const SizedBox(height: 15),
 
-            // Centered slogan under logo
+            // Slogan
             Text(
               "The restaurant that puts little dishes in the big ones.",
               textAlign: TextAlign.center,
@@ -75,7 +85,7 @@ class Acceuil extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // Row with 2 centered buttons (Maps & Phone)
+            // Maps and Phone Buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -84,17 +94,16 @@ class Acceuil extends StatelessWidget {
                   color: AppColors.green,
                   icon: const Icon(Icons.place),
                   onPressed: () {
-                    _launchMaps("Faculty of Sciences Meknes");
+                    _launchMaps(addresse); // Dynamically launching map with address
                   },
                 ),
                 const SizedBox(width: 40),
                 IconButton(
                   iconSize: 32,
-                  style: ButtonStyle(),
                   color: AppColors.yellow,
                   icon: const Icon(Icons.phone),
                   onPressed: () {
-                    _launchPhone(this.telephone);
+                    _launchPhone(telephone); // Dynamic phone number
                   },
                 ),
               ],
@@ -102,44 +111,61 @@ class Acceuil extends StatelessWidget {
 
             const SizedBox(height: 30),
 
-            // Card with description, address and phone
+            // Information Card
             Card(
               shadowColor: AppColors.primary,
               elevation: 8,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15)),
+                borderRadius: BorderRadius.circular(15),
+              ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
+                      "Restaurant Name:",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      name,
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    Text(
                       "Description:",
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
-                      this.desc,
+                      desc,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
-                    SizedBox(height: 20),
+
+                    const SizedBox(height: 20),
+
                     Text(
                       "Address:",
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
-                      this.addresse,
+                      addresse,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
-                    SizedBox(height: 20),
+
+                    const SizedBox(height: 20),
+
                     Text(
                       "Phone:",
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
-                      this.telephone,
+                      telephone,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],

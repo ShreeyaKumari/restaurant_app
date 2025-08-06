@@ -5,7 +5,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Margherita Pizza',
     description: 'Fresh tomatoes, buffalo mozzarella, and basil',
-    price: 85.0,
+    price: 550,
     imageUrl: 'assets/images/pizza.jpg',
     category: 'Pizzas',
     likes: 15,
@@ -17,7 +17,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Four Cheese Pizza',
     description: 'Mozzarella, gorgonzola, parmesan, and goat cheese',
-    price: 95.0,
+    price: 450,
     imageUrl: 'assets/images/pizza_quatre_fromages.jpeg',
     category: 'Pizzas',
     likes: 22,
@@ -27,7 +27,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Pepperoni Pizza',
     description: 'Spicy pepperoni and melted mozzarella',
-    price: 90.0,
+    price: 600,
     imageUrl: 'assets/images/pizza_pepperoni.jpeg',
     category: 'Pizzas',
     likes: 18,
@@ -37,7 +37,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Vegetarian Pizza',
     description: 'Grilled vegetables, mushrooms, and olives',
-    price: 88.0,
+    price: 350,
     imageUrl: 'assets/images/pizza_vegetarienne.jpeg',
     category: 'Pizzas',
     likes: 12,
@@ -47,7 +47,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Seafood Pizza',
     description: 'Shrimp, mussels, and squid',
-    price: 120.0,
+    price: 700,
     imageUrl: 'assets/images/pizza_fruits_mer.jpeg',
     category: 'Pizzas',
     likes: 25,
@@ -57,7 +57,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Oriental Pizza',
     description: 'Merguez sausage, peppers, and harissa',
-    price: 98.0,
+    price: 750,
     imageUrl: 'assets/images/pizza_orientale.jpg',
     category: 'Pizzas',
     likes: 20,
@@ -67,7 +67,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Royal Pizza',
     description: 'Ham, mushrooms, and egg',
-    price: 105.0,
+    price: 800,
     imageUrl: 'assets/images/pizza_royale.jpeg',
     category: 'Pizzas',
     likes: 16,
@@ -79,7 +79,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Classic Burger',
     description: 'Beef patty, lettuce, and tomato',
-    price: 75.0,
+    price: 320,
     imageUrl: 'assets/images/burger.jpg',
     category: 'Burgers',
     likes: 22,
@@ -92,7 +92,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Cheese Burger',
     description: 'Double beef patty and double cheese',
-    price: 85.0,
+    price: 485,
     imageUrl: 'assets/images/burger_cheese.jpeg',
     category: 'Burgers',
     likes: 28,
@@ -102,7 +102,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Chicken Burger',
     description: 'Grilled chicken fillet',
-    price: 70.0,
+    price: 470,
     imageUrl: 'assets/images/burger_chicken.jpeg',
     category: 'Burgers',
     likes: 19,
@@ -112,7 +112,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Fish Burger',
     description: 'Breaded fish fillet',
-    price: 78.0,
+    price: 780,
     imageUrl: 'assets/images/burger_fish.jpeg',
     category: 'Burgers',
     likes: 14,
@@ -122,7 +122,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Vegetarian Burger',
     description: 'Plant-based patty and avocado',
-    price: 68.0,
+    price: 568,
     imageUrl: 'assets/images/burger_vegetarien.jpg',
     category: 'Burgers',
     likes: 11,
@@ -132,7 +132,7 @@ List<Dish> dishes = [
   Dish(
     name: 'BBQ Burger',
     description: 'Beef patty with BBQ sauce',
-    price: 88.0,
+    price: 588,
     imageUrl: 'assets/images/burger_bbq.jpeg',
     category: 'Burgers',
     likes: 24,
@@ -142,7 +142,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Royal Burger',
     description: 'Triple patty, cheese, and bacon',
-    price: 95.0,
+    price: 595.0,
     imageUrl: 'assets/images/burger_royal.jpeg',
     category: 'Burgers',
     likes: 30,
@@ -154,7 +154,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Chicken Tagine with Olives',
     description: 'Slow-cooked chicken with green olives',
-    price: 110.0,
+    price: 810.0,
     imageUrl: 'assets/images/tajine_poulet_olives.jpeg',
     category: 'Tagines',
     likes: 35,
@@ -164,7 +164,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Lamb Tagine with Prunes',
     description: 'Tender lamb with prunes',
-    price: 130.0,
+    price: 730.0,
     imageUrl: 'assets/images/tajine_agneau_pruneaux.jpg',
     category: 'Tagines',
     likes: 28,
@@ -174,7 +174,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Beef Tagine with Vegetables',
     description: 'Slow-cooked beef with vegetables',
-    price: 120.0,
+    price: 620.0,
     imageUrl: 'assets/images/tajine_boeuf_legumes.jpeg',
     category: 'Tagines',
     likes: 22,
@@ -184,7 +184,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Fish Tagine with Vegetables',
     description: 'Fresh fish with vegetables',
-    price: 125.0,
+    price: 925.0,
     imageUrl: 'assets/images/tajine_poisson.jpeg',
     category: 'Tagines',
     likes: 18,
@@ -194,7 +194,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Kefta Tagine with Eggs',
     description: 'Meatballs with eggs',
-    price: 105.0,
+    price: 905.0,
     imageUrl: 'assets/images/tajine_kefta.jpeg',
     category: 'Tagines',
     likes: 26,
@@ -204,7 +204,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Vegetarian Tagine',
     description: 'Slow-cooked seasonal vegetables',
-    price: 85.0,
+    price: 485.0,
     imageUrl: 'assets/images/tajine_vegetarien.jpg',
     category: 'Tagines',
     likes: 15,
@@ -216,7 +216,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Royal Couscous',
     description: 'Lamb, chicken, and merguez sausage',
-    price: 140.0,
+    price: 340.0,
     imageUrl: 'assets/images/couscous_royal.JPG',
     category: 'Couscous',
     likes: 42,
@@ -226,7 +226,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Lamb Couscous',
     description: 'Tender lamb with vegetables',
-    price: 125.0,
+    price: 825.0,
     imageUrl: 'assets/images/couscous_agneau.jpeg',
     category: 'Couscous',
     likes: 31,
@@ -236,7 +236,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Chicken Couscous',
     description: 'Farm-raised chicken with vegetables',
-    price: 115.0,
+    price: 515.0,
     imageUrl: 'assets/images/couscous_poulet.jpeg',
     category: 'Couscous',
     likes: 28,
@@ -246,7 +246,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Vegetarian Couscous',
     description: 'Mixed vegetables and chickpeas',
-    price: 95.0,
+    price: 395.0,
     imageUrl: 'assets/images/couscous_vegetarien.jpg',
     category: 'Couscous',
     likes: 19,
@@ -258,7 +258,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Sidi Ali Mineral Water',
     description: 'Natural mineral water (50cl)',
-    price: 12.0,
+    price: 52.0,
     imageUrl: 'assets/images/eau_sidi_ali.jpg',
     category: 'Drinks',
     likes: 8,
@@ -268,7 +268,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Coca-Cola',
     description: 'Carbonated drink (33cl)',
-    price: 15.0,
+    price: 95.0,
     imageUrl: 'assets/images/coca_cola.jpg',
     category: 'Drinks',
     likes: 12,
@@ -278,7 +278,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Fresh Orange Juice',
     description: 'Freshly squeezed orange juice (25cl)',
-    price: 20.0,
+    price: 120.0,
     imageUrl: 'assets/images/jus_orange.jpg',
     category: 'Drinks',
     likes: 18,
@@ -288,7 +288,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Mint Tea',
     description: 'Traditional green tea with mint',
-    price: 18.0,
+    price: 100.0,
     imageUrl: 'assets/images/the_menthe.jpeg',
     category: 'Drinks',
     likes: 25,
@@ -298,7 +298,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Espresso Coffee',
     description: 'Italian espresso coffee',
-    price: 15.0,
+    price: 215.0,
     imageUrl: 'assets/images/cafe_espresso.JPG',
     category: 'Drinks',
     likes: 14,
@@ -308,7 +308,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Homemade Lemonade',
     description: 'Handcrafted lemonade',
-    price: 22.0,
+    price: 122.0,
     imageUrl: 'assets/images/limonade.jpg',
     category: 'Drinks',
     likes: 16,
@@ -318,7 +318,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Red Berry Smoothie',
     description: 'Mixed red fruits smoothie (30cl)',
-    price: 35.0,
+    price: 135.0,
     imageUrl: 'assets/images/smoothie_fruits_rouges.JPG',
     category: 'Drinks',
     likes: 21,
@@ -328,7 +328,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Mango Lassi',
     description: 'Yogurt-based mango drink',
-    price: 28.0,
+    price: 128.0,
     imageUrl: 'assets/images/lassi_mangue.jpeg',
     category: 'Drinks',
     likes: 13,
@@ -340,7 +340,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Tiramisu',
     description: 'Italian coffee dessert',
-    price: 45.0,
+    price: 245.0,
     imageUrl: 'assets/images/tiramisu.jpg',
     category: 'Desserts',
     likes: 18,
@@ -350,7 +350,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Baklava',
     description: 'Oriental pastry with almonds',
-    price: 35.0,
+    price: 235.0,
     imageUrl: 'assets/images/baklava.jpeg',
     category: 'Desserts',
     likes: 22,
@@ -360,7 +360,7 @@ List<Dish> dishes = [
   Dish(
     name: 'Crème Brûlée',
     description: 'Vanilla custard with caramelized top',
-    price: 40.0,
+    price: 240.0,
     imageUrl: 'assets/images/creme_brulee.jpeg',
     category: 'Desserts',
     likes: 19,

@@ -76,7 +76,7 @@ class _DishDetailsDialogState extends State<DishDetailsDialog> {
                           ),
                         ),
                         Text(
-                          '${widget.dish.price.toInt()} DH',
+                          '₹${widget.dish.price.toInt()}',
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ],

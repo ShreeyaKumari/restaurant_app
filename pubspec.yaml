@@ -31,7 +31,7 @@ dev_dependencies:
 
 flutter_native_splash:
   color: "#f2f5f6"
-  image: assets/images/logo.png
+  image: assets/images/logo2.png
   android: true
   ios: true
   web: true
@@ -77,6 +77,7 @@ flutter:
     - assets/images/jus_orange.jpg
     - assets/images/limonade.jpg
     - assets/images/smoothie_fruits_rouges.JPG
+    - assets/images/logo2.png
     - assets/images/lassi_mangue.jpeg
     - assets/images/baklava.jpeg
     - assets/images/creme_brulee.jpeg
