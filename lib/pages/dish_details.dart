@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../utils/colors.dart';
 import '../utils/models.dart';
+import '../utils/cart_provider.dart';
 
 class DishDetailsDialog extends StatefulWidget {
   final Dish dish;
@@ -37,7 +39,6 @@ class _DishDetailsDialogState extends State<DishDetailsDialog> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Dish image
             ClipRRect(
               borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
               child: Container(
@@ -65,7 +66,6 @@ class _DishDetailsDialogState extends State<DishDetailsDialog> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Name and price
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -76,19 +76,17 @@ class _DishDetailsDialogState extends State<DishDetailsDialog> {
                           ),
                         ),
                         Text(
-                          '₹${widget.dish.price.toInt()}',
+                          '${widget.dish.price.toInt()} DH',
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ],
                     ),
                     SizedBox(height: 8),
-                    // Description
                     Text(
                       widget.dish.description,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                     SizedBox(height: 12),
-                    // Like/dislike buttons
                     Row(
                       children: [
                         ElevatedButton.icon(
@@ -125,7 +123,6 @@ class _DishDetailsDialogState extends State<DishDetailsDialog> {
                       ],
                     ),
                     SizedBox(height: 16),
-                    // Field to add a comment
                     TextField(
                       controller: _commentController,
                       decoration: InputDecoration(
@@ -147,7 +144,6 @@ class _DishDetailsDialogState extends State<DishDetailsDialog> {
                       maxLines: 2,
                     ),
                     SizedBox(height: 12),
-                    // Comments section
                     Text(
                       'Comments',
                       style: TextStyle(
@@ -157,7 +153,6 @@ class _DishDetailsDialogState extends State<DishDetailsDialog> {
                       ),
                     ),
                     SizedBox(height: 8),
-                    // List of comments
                     if (widget.dish.comments.isNotEmpty)
                       Column(
                         children: widget.dish.comments.map((comment) {
@@ -209,9 +204,34 @@ class _DishDetailsDialogState extends State<DishDetailsDialog> {
                 ),
               ),
             ),
-            // Close button
+
+            /// --- Add to Cart Button ---
             Padding(
-              padding: EdgeInsets.all(12),
+              padding: EdgeInsets.symmetric(horizontal: 12),
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  Provider.of<CartProvider>(context, listen: false).addToCart(widget.dish);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('${widget.dish.name} added to cart')),
+                  );
+                },
+                icon: Icon(Icons.shopping_cart),
+                label: Text('Add to Cart'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.yellow,
+                  foregroundColor: Colors.black,
+                  minimumSize: Size(double.infinity, 40),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 10),
+
+            /// --- Close Button ---
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12),
               child: ElevatedButton(
                 onPressed: () => Navigator.of(context).pop(),
                 child: Text('Close'),
@@ -225,6 +245,7 @@ class _DishDetailsDialogState extends State<DishDetailsDialog> {
                 ),
               ),
             ),
+            SizedBox(height: 12),
           ],
         ),
       ),

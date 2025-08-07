@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:restaurant_app/utils/models.dart';
 import 'package:restaurant_app/utils/colors.dart';
 import '../utils/dishes.dart';
 import '../utils/theme_provider.dart';
-import 'package:provider/provider.dart';
+import '../utils/cart_provider.dart';
+import '../pages/cart_page.dart';
 import 'dish_details.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,14 +17,13 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   late TabController _tabController;
 
   final List<String> categories = [
-  'Pizzas',
-  'Burgers',
-  'Tagines',
-  'Couscous',
-  'Drinks',
-  'Desserts',
-];
-
+    'Pizzas',
+    'Burgers',
+    'Tagines',
+    'Couscous',
+    'Drinks',
+    'Desserts',
+  ];
 
   @override
   void initState() {
@@ -37,13 +38,6 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   }
 
   List<Dish> getFilteredDishes(String category) {
-    if (category == 'All') {
-      return dishes;
-    } else if (category == 'Your favorite dishes') {
-      List<Dish> likedDishes = dishes.where((dish) => dish.likes > 0).toList();
-      likedDishes.sort((a, b) => b.likes.compareTo(a.likes));
-      return likedDishes;
-    }
     return dishes.where((dish) => dish.category == category).toList();
   }
 
@@ -65,10 +59,21 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
+    final cartProvider = Provider.of<CartProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Home", style: Theme.of(context).textTheme.bodyLarge),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.shopping_cart),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const CartPage()),
+              );
+            },
+          ),
           Switch.adaptive(
             value: themeProvider.isDarkMode,
             onChanged: (value) {
@@ -94,13 +99,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     ),
                     controller: _tabController,
                     isScrollable: true,
-                    labelColor: themeProvider.isDarkMode
-                        ? AppColors.textLight
-                        : AppColors.textDark,
-                    unselectedLabelColor: (themeProvider.isDarkMode
-                            ? AppColors.textLight
-                            : AppColors.textDark)
-                        .withOpacity(0.7),
+                    labelColor: themeProvider.isDarkMode ? AppColors.textLight : AppColors.textDark,
+                    unselectedLabelColor: (themeProvider.isDarkMode ? AppColors.textLight : AppColors.textDark).withOpacity(0.7),
                     indicatorColor: AppColors.yellow,
                     labelStyle: Theme.of(context).textTheme.bodySmall,
                     unselectedLabelStyle: Theme.of(context).textTheme.bodySmall,
@@ -115,26 +115,35 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               controller: _tabController,
               children: categories.map((category) {
                 List<Dish> filteredDishes = getFilteredDishes(category);
-                return Container(
-                  padding: EdgeInsets.all(16),
-                  child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 16,
-                      childAspectRatio: 0.85,
-                    ),
-                    itemCount: filteredDishes.length,
-                    itemBuilder: (context, index) {
-                      return ReferenceDishCard(
-                        dish: filteredDishes[index],
-                        onTap: () =>
-                            _showDishDetails(context, filteredDishes[index]),
-                        onLike: () => _onLike(filteredDishes[index]),
-                        onDislike: () => _onDislike(filteredDishes[index]),
-                      );
-                    },
-                  ),
+                return LayoutBuilder(
+                  builder: (context, constraints) {
+                    int crossAxisCount = 2;
+                    if (constraints.maxWidth >= 1200) {
+                      crossAxisCount = 4;
+                    } else if (constraints.maxWidth >= 800) {
+                      crossAxisCount = 3;
+                    }
+                    return Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: crossAxisCount,
+                          crossAxisSpacing: 16,
+                          mainAxisSpacing: 16,
+                          childAspectRatio: 0.85,
+                        ),
+                        itemCount: filteredDishes.length,
+                        itemBuilder: (context, index) {
+                          return ReferenceDishCard(
+                            dish: filteredDishes[index],
+                            onTap: () => _showDishDetails(context, filteredDishes[index]),
+                            onLike: () => _onLike(filteredDishes[index]),
+                            onDislike: () => _onDislike(filteredDishes[index]),
+                          );
+                        },
+                      ),
+                    );
+                  },
                 );
               }).toList(),
             ),
@@ -221,8 +230,8 @@ class ReferenceDishCard extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              padding: EdgeInsets.all(12),
+            Padding(
+              padding: const EdgeInsets.all(12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
